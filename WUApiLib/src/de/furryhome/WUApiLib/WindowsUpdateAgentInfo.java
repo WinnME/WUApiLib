@@ -50,16 +50,18 @@ public class WindowsUpdateAgentInfo {
 	}
 
 	/**
-	 * Creates an instance of the WindowsUpdateAgentinfo class and saves it to a class variable.<br>
-	 * if an instance already exists, no new one will be created.
+	 * Creates and returns an instance of the WindowsUpdateAgentinfo class.<br>
+	 * If one instance already exists, it will be returned instead of creating a new one.
 	 * 
+	 * @return	the instance of that class
 	 * @since	1.0
 	 * 
 	 */
-	private static void createInstance() {
+	private static Dispatch getInstance() {
 		if (instance == null) {
 			new WindowsUpdateAgentInfo();
 		}
+		return instance;
 	}
 	
 	//Wrapped
@@ -73,13 +75,12 @@ public class WindowsUpdateAgentInfo {
 	 * 
 	 */
 	public static String getInfo(String s) throws IllegalArgumentException {
-		createInstance();
 		boolean throwException = true;
 		for (VersionInfo e : VersionInfo.values()) {
 			if (e.name().equals(s)) throwException = false;
 		}
 		if (!throwException) {
-			return Dispatch.call(instance, "GetInfo", new Variant(s)).toString();
+			return Dispatch.call(getInstance(), "GetInfo", new Variant(s)).toString();
 		} else {
 			throw new IllegalArgumentException( s + "is not a valid argument");
 		}
@@ -94,7 +95,6 @@ public class WindowsUpdateAgentInfo {
 	 * 
 	 */
 	public static String getInfo(VersionInfo e) {
-		createInstance();
-		return Dispatch.call(instance, "GetInfo", new Variant(e.name())).toString();
+		return Dispatch.call(getInstance(), "GetInfo", new Variant(e.name())).toString();
 	}
 }

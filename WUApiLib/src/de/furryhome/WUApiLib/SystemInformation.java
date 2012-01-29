@@ -37,16 +37,18 @@ public class SystemInformation {
 	}
 	
 	/**
-	 * Creates an instance of the SystemInfo class and saves it to a class variable.<br>
-	 * if an instance already exists, no new one will be created.
+	 * Creates and returns an instance of the SystemInformation class.<br>
+	 * If one instance already exists, it will be returned instead of creating a new one.
 	 * 
+	 * @return	the instance of that class
 	 * @since	1.0
 	 * 
 	 */
-	private static void createInstance() {
+	private static Dispatch getInstance() {
 		if (instance == null) {
 			new SystemInformation();
 		}
+		return instance;
 	}
 
 	//Wrapped
@@ -59,8 +61,7 @@ public class SystemInformation {
 	 * 
 	 */
 	public static boolean isRebootRequired() {
-		createInstance();
-		return Dispatch.get(instance, "RebootRequired").getBoolean();
+		return Dispatch.get(getInstance(), "RebootRequired").getBoolean();
 	}
 	
 	/**
@@ -71,8 +72,7 @@ public class SystemInformation {
 	 * 
 	 */
 	public static String getOemHardwareSupportLink() {
-		createInstance();
-		return Dispatch.get(instance, "OemHardwareSupportLink").getString();
+		return Dispatch.get(getInstance(), "OemHardwareSupportLink").getString();
 	}
 	
 	//Deprecated Routines

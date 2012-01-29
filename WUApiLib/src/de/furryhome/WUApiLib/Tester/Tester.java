@@ -1,6 +1,6 @@
 package de.furryhome.WUApiLib.Tester;
 
-import de.furryhome.WUApiLib.SystemInformation;
+import de.furryhome.WUApiLib.WindowsUpdateAgentInfo;
 
 public class Tester {
 
@@ -8,6 +8,6 @@ public class Tester {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(SystemInformation.RebootRequired());
+		System.out.println(WindowsUpdateAgentInfo.getInfo(WindowsUpdateAgentInfo.VersionInfo.ProductVersionString.name()));
 	}
 }

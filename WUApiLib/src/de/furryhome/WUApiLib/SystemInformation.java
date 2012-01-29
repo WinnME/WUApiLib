@@ -28,6 +28,7 @@ public class SystemInformation {
 	
 	/**
 	 * Private constructor, initializes the SystemInfo object and saves it into {@link #instance}.
+	 * 
 	 * @since	1.0
 	 * 
 	 */
